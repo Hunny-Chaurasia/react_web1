@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Hub</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const LearningHub = () => {
+          const styles = {
+            container: {
+              margin: 0,
+              padding: 0,
+              boxSizing: 'border-box',
+              wordWrap: 'break-word',
+              fontSize: '1rem',
+              color: '#FFFFFF',
+              backgroundColor: '#1E1B4B',
+              fontFamily: 'Arial, sans-serif',
+              lineHeight: 1.6,
+              overflowX: 'hidden',
+              minHeight: '100vh'
+            },
+            navbar: {
+              width: '100%',
+              height: '20vh',
+              position: 'relative',
+              top: 0,
+              backgroundColor: 'rgba(240, 248, 255, 0.1)',
+              overflow: 'hidden',
+              backgroundImage: 'linear-gradient(135deg, #FF6B35, #F472B6)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center'
+            },
+            navItems: {
+              position: 'relative',
+              height: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              zIndex: 1
+            },
+            navList: {
+              listStyleType: 'none',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              backgroundColor: 'rgba(22, 22, 22, 0.7)',
+              width: '100%',
+              padding: '1rem 2rem',
+              backdropFilter: 'blur(10px)',
+              margin: 0
+            },
+            navLink: {
+              color: '#FFFFFF',
+              textDecoration: 'none',
+              padding: '0.5rem 1rem',
+              borderRadius: '5px',
+              transition: 'all 0.3s ease',
+              cursor: 'pointer'
+            },
+            navIcon: {
+              background: 'linear-gradient(135deg, #FF6B35, #F472B6)',
+              backgroundClip: 'text',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              marginRight: '0.5rem'
+            },
+            main: {
+              position: 'relative',
+              top: 0,
+              padding: '2rem 0',
+              minHeight: 'calc(100vh - 40vh)'
+            },
+            article: {
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: '2rem',
+              padding: '2rem',
+              maxWidth: '1200px',
+              margin: '0 auto'
+            },
+            content: {
+              boxShadow: '0 5px 15px rgba(255, 255, 255, 0.1)',
+              position: 'relative',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '2rem',
+              margin: '2rem 0',
+              width: '100%',
+              padding: '2rem',
+              backgroundColor: 'rgba(237, 233, 233, 0.05)',
+              borderRadius: '15px',
+              textAlign: 'justify',
+              transition: 'all 0.3s ease',
+              backdropFilter: 'blur(10px)',
+              border: '1px solid rgba(255, 255, 255, 0.1)'
+            },
+            contentReverse: {
+              flexDirection: 'row-reverse'
+            },
+            contentText: {
+              flex: 1,
+              minWidth: '4vw'
+            },
+            contentTitle: {
+              background: 'linear-gradient(135deg, #FF6B35, #F472B6)',
+              backgroundClip: 'text',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              marginBottom: '1rem',
+              fontSize: '1.8rem',
+              margin: '0 0 1rem 0'
+            },
+            contentParagraph: {
+              fontSize: '1.1rem',
+              lineHeight: 1.8,
+              marginBottom: '1rem',
+              minWidth: '2vw',
+              textAlign: 'justify'
+            },
+            contentImage: {
+              flex: '0 0 40%',
+              maxWidth: '500px',
+              borderRadius: '10px',
+              overflow: 'hidden',
+              width: '100%',
+              height: '20vw',
+              objectFit: 'cover',
+              transition: 'transform 0.3s ease'
+            },
+            footer: {
+              position: 'relative',
+              marginTop: '4rem'
+            },
+            footerContent: {
+              width: '100%',
+              height: '70vh',
+              position: 'relative',
+              backgroundColor: 'rgba(240, 248, 255, 0.1)',
+              overflow: 'hidden',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              backdropFilter: 'blur(10px)',
+              zIndex: 1,
+              backgroundImage: 'linear-gradient(135deg, #4C1D95, #6B46C1)',
+              flexDirection: 'column',
+              textAlign: 'center',
+              padding: '2rem'
+            },
+            footerTitle: {
+              fontSize: '2rem',
+              marginBottom: '1rem',
+              background: 'linear-gradient(135deg, #FF6B35, #F472B6)',
+              backgroundClip: 'text',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent'
+            },
+            footerParagraph: {
+              fontSize: '1.2rem',
+              textAlign: 'center',
+              marginBottom: '2rem'
+            },
+            btnPrimary: {
+              backgroundColor: '#FF6B35',
+              color: '#FFFFFF',
+              padding: '1rem 2rem',
+              border: 'none',
+              borderRadius: '8px',
+              fontSize: '1.1rem',
+              cursor: 'pointer',
+              textDecoration: 'none',
+              display: 'inline-block',
+              transition: 'all 0.3s ease',
+              marginBottom: '2rem'
+            },
+            copyright: {
+              fontSize: '0.9rem',
+              opacity: 0.8
+            }
+          };
+
+          const handleNavLinkHover = (e) => {
+            e.target.style.backgroundColor = 'rgba(186, 112, 112, 0.3)';
+            e.target.style.transform = 'translateY(-2px)';
+          };
+
+          const handleNavLinkLeave = (e) => {
+            e.target.style.backgroundColor = 'transparent';
+            e.target.style.transform = 'translateY(0)';
+          };
+
+          const handleContentHover = (e) => {
+            e.currentTarget.style.boxShadow = '0 10px 30px rgba(255, 255, 255, 0.2)';
+            e.currentTarget.style.transform = 'translateY(-5px)';
+            const img = e.currentTarget.querySelector('img');
+            if (img) {
+              img.style.transform = 'scale(1.09)';
+            }
+          };
+
+          const handleContentLeave = (e) => {
+            e.currentTarget.style.boxShadow = '0 5px 15px rgba(255, 255, 255, 0.1)';
+            e.currentTarget.style.transform = 'translateY(0)';
+            const img = e.currentTarget.querySelector('img');
+            if (img) {
+              img.style.transform = 'scale(1)';
+            }
+          };
+
+          return (
+            <div style={styles.container}>
+              {/* Navigation */}
+              <nav style={styles.navbar}>
+                <div style={styles.navItems}>
+                  <ul style={styles.navList}>
+                    <li>
+                      <span style={styles.navIcon}>@YourHub</span>
+                    </li>
+                    <li>
+                      <a 
+                        style={styles.navLink}
+                        onMouseEnter={handleNavLinkHover}
+                        onMouseLeave={handleNavLinkLeave}
+                      >
+                        <span style={styles.navIcon}>🏠</span>Home
+                      </a>
+                    </li>
+                    <li>
+                      <a 
+                        style={styles.navLink}
+                        onMouseEnter={handleNavLinkHover}
+                        onMouseLeave={handleNavLinkLeave}
+                      >
+                        <span style={styles.navIcon}>⚙️</span>Services
+                      </a>
+                    </li>
+                    <li>
+                      <a 
+                        style={styles.navLink}
+                        onMouseEnter={handleNavLinkHover}
+                        onMouseLeave={handleNavLinkLeave}
+                      >
+                        <span style={styles.navIcon}>👤</span>About Us
+                      </a>
+                    </li>
+                    <li>
+                      <a 
+                        style={styles.navLink}
+                        onMouseEnter={handleNavLinkHover}
+                        onMouseLeave={handleNavLinkLeave}
+                      >
+                        <span style={styles.navIcon}>✉️</span>Contact Us
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+
+              {/* Main Content */}
+              <main style={styles.main}>
+                <article style={styles.article}>
+                  {/* Content Section 1 */}
+                  <section 
+                    style={styles.content}
+                    onMouseEnter={handleContentHover}
+                    onMouseLeave={handleContentLeave}
+                  >
+                    <div style={styles.contentText}>
+                      <h2 style={styles.contentTitle}>About Our Company</h2>
+                      <p style={styles.contentParagraph}>
+                        We are a forward-thinking technology company dedicated to creating innovative solutions that
+                        transform businesses and enhance user experiences. Our team of expert developers, designers, and
+                        strategists work collaboratively to deliver cutting-edge digital products that meet the evolving
+                        needs of our clients.
+                      </p>
+                      <p style={styles.contentParagraph}>
+                        With over a decade of experience in the industry, we have successfully completed hundreds of
+                        projects ranging from simple websites to complex enterprise applications. Our commitment to
+                        excellence and attention to detail sets us apart in the competitive technology landscape.
+                      </p>
+                    </div>
+                    <img 
+                      style={styles.contentImage}
+                      src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=300&fit=crop"
+                      alt="Team collaboration"
+                    />
+                  </section>
+
+                  {/* Content Section 2 */}
+                  <section 
+                    style={{...styles.content, ...styles.contentReverse}}
+                    onMouseEnter={handleContentHover}
+                    onMouseLeave={handleContentLeave}
+                  >
+                    <div style={styles.contentText}>
+                      <h2 style={styles.contentTitle}>Our Innovation</h2>
+                      <p style={styles.contentParagraph}>
+                        We are a forward-thinking technology company dedicated to creating innovative solutions that
+                        transform businesses and enhance user experiences. Our team of expert developers, designers, and
+                        strategists work collaboratively to deliver cutting-edge digital products that meet the evolving
+                        needs of our clients.
+                      </p>
+                      <p style={styles.contentParagraph}>
+                        With over a decade of experience in the industry, we have successfully completed hundreds of projects
+                        ranging from simple websites to complex enterprise applications. Our commitment to excellence and
+                        attention to detail sets us apart in the competitive technology landscape.
+                      </p>
+                    </div>
+                    <img 
+                      style={styles.contentImage}
+                      src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=300&fit=crop"
+                      alt="Innovation and technology"
+                    />
+                  </section>
+
+                  {/* Content Section 3 */}
+                  <section 
+                    style={styles.content}
+                    onMouseEnter={handleContentHover}
+                    onMouseLeave={handleContentLeave}
+                  >
+                    <div style={styles.contentText}>
+                      <h2 style={styles.contentTitle}>Our Excellence</h2>
+                      <p style={styles.contentParagraph}>
+                        We are a forward-thinking technology company dedicated to creating innovative solutions that transform 
+                        businesses and enhance user experiences. Our team of expert developers, designers, and strategists work 
+                        collaboratively to deliver cutting-edge digital products that meet the evolving needs of our clients.
+                      </p>
+                      <p style={styles.contentParagraph}>
+                        With over a decade of experience in the industry, we have successfully completed hundreds of projects 
+                        ranging from simple websites to complex enterprise applications. Our commitment to excellence and 
+                        attention to detail sets us apart in the competitive technology landscape.
+                      </p>
+                    </div>
+                    <img 
+                      style={styles.contentImage}
+                      src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=500&h=300&fit=crop"
+                      alt="Excellence in work"
+                    />
+                  </section>
+                </article>
+              </main>
+
+              {/* Footer */}
+              <footer style={styles.footer}>
+                <div style={styles.footerContent}>
+                  <h2 style={styles.footerTitle}>Ready to Start Your Journey?</h2>
+                  <p style={styles.footerParagraph}>Join over 50,000 students who have already transformed their careers</p>
+                  <a 
+                    href="#signup" 
+                    style={styles.btnPrimary}
+                    onMouseEnter={(e) => {
+                      e.target.style.backgroundColor = '#E55A2B';
+                      e.target.style.transform = 'translateY(-2px)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.backgroundColor = '#FF6B35';
+                      e.target.style.transform = 'translateY(0)';
+                    }}
+                  >
+                    Enroll Now - $29/month
+                  </a>
+                  <p style={styles.copyright}>
+                    &copy; 2024 CodeAcademy Pro. All rights reserved. | Privacy Policy | Terms of Service
+                  </p>
+                </div>
+              </footer>
+            </div>
+          );
+        };
+
+        const App = () => {
+          return <LearningHub />;
+        };
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
